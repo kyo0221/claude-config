@@ -34,23 +34,15 @@ Claude Code 用の `CLAUDE.md` 設定リポジトリ。
 
 ## このリポジトリの `CLAUDE.md` の内容
 
-```text
-1. Ask, don't assume. If something is unclear, ask before writing a single line.
-2. Simplest solution first. Always implement the simplest thing that could work.
-3. Don't touch unrelated code. If a file is not directly part of the current task, do not modify it.
-4. Flag uncertainty explicitly. If you're not confident about an approach, say so before proceeding.
-```
+- **会話ガイドライン** — 常に日本語で会話する
+- **開発方針（TDD）** — テスト駆動開発を原則とし、テスト作成 → 失敗確認 → 実装 → パス確認のループを回す
+- **Subagent Model Tiering** — Agent tool でサブエージェントに委譲するとき、タスクの性質（計画・分解 / 実装 / 単純作業）に応じて `model` パラメータを明示的に使い分ける
 
-### 日本語訳
-
-1. **推測せずに聞く** — 不明点があれば、コードを1行も書く前に質問する。
-2. **まずは最小の解決策で** — 動くなかで一番シンプルなものを実装する。
-3. **関係ないコードに触らない** — 今のタスクに直接関係しないファイルは変更しない。
-4. **不確実なら明示する** — アプローチに自信がないときは、進める前にそう伝える。
+詳細は [`CLAUDE.md`](CLAUDE.md) を参照。
 
 ## インストール (`install.sh`)
 
-このリポジトリの `CLAUDE.MD` と `skills/` を Global スコープ (`~/.claude/`) に一括で配置するシェルスクリプトです。
+このリポジトリの `CLAUDE.md` と `skills/` を Global スコープ (`~/.claude/`) に一括で配置するシェルスクリプトです。
 
 ```bash
 ./install.sh
@@ -58,7 +50,7 @@ Claude Code 用の `CLAUDE.md` 設定リポジトリ。
 
 ### 動作
 
-- リポジトリ直下の `CLAUDE.MD` を `~/.claude/CLAUDE.MD` にコピー
+- リポジトリ直下の `CLAUDE.md` を `~/.claude/CLAUDE.md` にコピー
 - リポジトリ直下の `skills/` を `~/.claude/skills/` にコピー
 - 配置先に同名のファイル / ディレクトリが既に存在する場合は、`*.bak.YYYYMMDD-HHMMSS` の形式でバックアップしてから上書き
 - スクリプトはどのディレクトリから実行しても、自身の置かれた場所を基準に動作
@@ -66,3 +58,7 @@ Claude Code 用の `CLAUDE.md` 設定リポジトリ。
 ### 反映
 
 コピー方式のため、リポジトリ側を更新したあとは `./install.sh` を再実行することで Global スコープに反映されます。
+
+### 注意（ファイル名の大文字小文字）
+
+Claude Code は `~/.claude/CLAUDE.md`（小文字）と `~/.claude/skills/<name>/SKILL.md`（小文字）を読み込みます。大文字の `CLAUDE.MD` / `SKILL.MD` は認識されないため、このリポジトリでは常に小文字のファイル名で管理してください。

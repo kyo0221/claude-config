@@ -31,7 +31,7 @@ install_path() {
   echo "install: ${src} -> ${dest}"
 }
 
-install_path "CLAUDE.MD"
+install_path "CLAUDE.md"
 install_path "skills"
 
 echo "done."
